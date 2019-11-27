@@ -1,7 +1,9 @@
 package cn.yg.capstoneserver.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Table(name = "artical")
 public class Artical {
@@ -10,9 +12,11 @@ public class Artical {
     private Integer uid;
     private String title;
     private Integer like;
-    private Integer numberOfComments;
+    @Column(name = "comment_id")
+    private Integer commentId;
     private String imgUrl;
-    private String attr1;
+    @Column(name = "crt_time")
+    private Date crtTime;
     private String attr2;
     private String attr3;
     private String attr4;
@@ -49,12 +53,12 @@ public class Artical {
         this.like = like;
     }
 
-    public Integer getNumberOfComments() {
-        return numberOfComments;
+    public Integer getCommentId() {
+        return commentId;
     }
 
-    public void setNumberOfComments(Integer numberOfComments) {
-        this.numberOfComments = numberOfComments;
+    public void setCommentId(Integer commentId) {
+        this.commentId = commentId;
     }
 
     public String getImgUrl() {
@@ -65,12 +69,12 @@ public class Artical {
         this.imgUrl = imgUrl;
     }
 
-    public String getAttr1() {
-        return attr1;
+    public Date getCrtTime() {
+        return crtTime;
     }
 
-    public void setAttr1(String attr1) {
-        this.attr1 = attr1;
+    public void setCrtTime(Date crtTime) {
+        this.crtTime = crtTime;
     }
 
     public String getAttr2() {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("user")
+@CrossOrigin
 public class UserController implements UserControllerApi {
     @Autowired
     private UserBiz userBiz;
@@ -24,13 +25,13 @@ public class UserController implements UserControllerApi {
 
     @Override
     @GetMapping("info/{id}")
-    public ObjectResponseResult<User> info(@PathVariable int id) {
+    public ObjectResponseResult<User> info(@PathVariable String id) {
         return userBiz.info(id);
     }
 
     @Override
     @GetMapping("logout/{id}")
-    public ResponseResult logout(@PathVariable int id) {
+    public ResponseResult logout(@PathVariable String id) {
         return userBiz.logout(id);
     }
 

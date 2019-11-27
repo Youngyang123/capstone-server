@@ -6,7 +6,7 @@ import javax.persistence.Table;
 @Table(name = "user")
 public class User {
     @Id
-    private Integer id;
+    private String id;
     private String name;
     private String passwd;
     private String photo;
@@ -16,11 +16,11 @@ public class User {
     private String attr3;
     private String attr4;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

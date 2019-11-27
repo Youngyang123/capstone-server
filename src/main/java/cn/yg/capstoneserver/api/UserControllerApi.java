@@ -13,10 +13,10 @@ public interface UserControllerApi {
     LoginResponseResult login(LoginRequest loginRequest);
 
     @ApiOperation("获取用户信息")
-    ObjectResponseResult<User> info(int id);
+    ObjectResponseResult<User> info(String id);
 
     @ApiOperation("用户退出")
-    ResponseResult logout(int id);
+    ResponseResult logout(String id);
 
     @ApiOperation("用户注册")
     ResponseResult regist(User user);

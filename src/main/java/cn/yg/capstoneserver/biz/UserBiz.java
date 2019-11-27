@@ -41,11 +41,11 @@ public class UserBiz {
         return new ResponseResult(20000, "添加成功");
     }
 
-    public ResponseResult logout(int id) {
+    public ResponseResult logout(String id) {
         return new ResponseResult("退出成功");
     }
 
-    public ObjectResponseResult<User> info(int id) {
+    public ObjectResponseResult<User> info(String id) {
         User user = userMapper.selectByPrimaryKey(id);
         if (user == null) {
             return new ObjectResponseResult<>(40000, "用户不存在", null);
@@ -53,7 +53,7 @@ public class UserBiz {
         return new ObjectResponseResult<User>(20000, "获取成功", user);
     }
 
-    public LoginResponseResult login(Integer id, String passwd) {
+    public LoginResponseResult login(String id, String passwd) {
         User user = new User();
         user.setId(id);
         user.setPasswd(passwd);
@@ -61,6 +61,6 @@ public class UserBiz {
         if (users==null || users.size() < 1) {
             return new LoginResponseResult(40000, "用户名或密码错误", null);
         }
-        return new LoginResponseResult(40000, "登录成功", users.get(0).getId());
+        return new LoginResponseResult(20000, "登录成功", users.get(0).getId());
     }
 }

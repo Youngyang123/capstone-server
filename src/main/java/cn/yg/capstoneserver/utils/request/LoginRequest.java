@@ -1,14 +1,14 @@
 package cn.yg.capstoneserver.utils.request;
 
 public class LoginRequest {
-    private Integer id;
+    private String id;
     private String passwd;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

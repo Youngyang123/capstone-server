@@ -1,23 +1,23 @@
 package cn.yg.capstoneserver.utils.response;
 
 public class LoginResponseResult extends ResponseResult {
-    private Integer uid;
+    private String uid;
 
-    public LoginResponseResult(int code, String message, Integer uid) {
+    public LoginResponseResult(int code, String message, String uid) {
         super(code, message);
         this.uid = uid;
     }
 
-    public LoginResponseResult(String message, Integer uid) {
+    public LoginResponseResult(String message, String uid) {
         super(message);
         this.uid = uid;
     }
 
-    public Integer getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(String uid) {
         this.uid = uid;
     }
 }
