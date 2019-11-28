@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://39.106.124.209/capstone?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    url: jdbc:mysql://39.106.124.209/capstone?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
@@ -12,3 +12,8 @@ spring:
 mybatis:
     typeAliasesPackage: cn.yg.capstoneserver.entity
     mapper-locations: classpath:mapper/*.xml
+
+
+logging:
+  level:
+    cn.yg.capstoneserver: debug
