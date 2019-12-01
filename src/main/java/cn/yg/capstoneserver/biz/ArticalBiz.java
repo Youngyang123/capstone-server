@@ -23,7 +23,6 @@ public class ArticalBiz {
         Example example = new Example(Artical.class);
         example.orderBy("crtTime").desc();
         List<Artical> articals = articalMapper.selectByExample(example);
-
         return null;
     }
 }
