@@ -16,6 +16,16 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <mysql-connector-java.version>5.1.45</mysql-connector-java.version>
+        <mapper-spring-boot-starter.version>2.1.5</mapper-spring-boot-starter.version>
+        <!-- mapper接口和实体类 -->
+        <targetMapperPackage>cn.yg.capstoneserver.mapper</targetMapperPackage>
+        <targetModelPackage>cn.yg.capstoneserver.entity</targetModelPackage>
+        <targetJavaProject>${basedir}/src/main/java</targetJavaProject>
+        <!-- XML生成路径 -->
+        <targetResourcesProject>${basedir}/src/main/resources
+        </targetResourcesProject>
+        <targetXMLPackage>mapper</targetXMLPackage>
     </properties>
 
     <dependencies>
@@ -39,13 +49,13 @@
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
-            <version>2.1.5</version>
+            <version>${mapper-spring-boot-starter.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.45</version>
+            <version>${mysql-connector-java.version}</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
@@ -80,6 +90,32 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- 此插件用来生成通用mapper的代码 -->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.2</version>
+                <configuration>
+                    <configurationFile>
+                        ${basedir}/src/main/resources/builder/generatorConfig.xml
+                    </configurationFile>
+                    <overwrite>true</overwrite>
+                    <verbose>true</verbose>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.30</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>tk.mybatis</groupId>
+                        <artifactId>mapper</artifactId>
+                        <version>4.1.5</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>

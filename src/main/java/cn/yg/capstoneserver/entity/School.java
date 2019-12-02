@@ -1,33 +1,33 @@
 package cn.yg.capstoneserver.entity;
 
+import java.util.Date;
 import javax.persistence.*;
 
-public class Comment {
+public class School {
     @Id
     private Integer id;
 
     /**
-     * 用户id
+     * 学校名称
      */
-    private String uid;
+    private String name;
 
     /**
-     * 文章id
+     * 校长
      */
-    @Column(name = "artical_id")
-    private Integer articalId;
+    private String owner;
 
     /**
-     * 评论内容
+     * 创建时间
      */
-    @Column(name = "comment_content")
-    private String commentContent;
+    @Column(name = "crt_time")
+    private Date crtTime;
 
     /**
-     * 点赞数
+     * 更新时间
      */
-    @Column(name = "commnet_like")
-    private Integer commnetLike;
+    @Column(name = "upd_time")
+    private Date updTime;
 
     private String attr1;
 
@@ -52,75 +52,75 @@ public class Comment {
     }
 
     /**
-     * 获取用户id
+     * 获取学校名称
      *
-     * @return uid - 用户id
+     * @return name - 学校名称
      */
-    public String getUid() {
-        return uid;
+    public String getName() {
+        return name;
     }
 
     /**
-     * 设置用户id
+     * 设置学校名称
      *
-     * @param uid 用户id
+     * @param name 学校名称
      */
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
-     * 获取文章id
+     * 获取校长
      *
-     * @return artical_id - 文章id
+     * @return owner - 校长
      */
-    public Integer getArticalId() {
-        return articalId;
+    public String getOwner() {
+        return owner;
     }
 
     /**
-     * 设置文章id
+     * 设置校长
      *
-     * @param articalId 文章id
+     * @param owner 校长
      */
-    public void setArticalId(Integer articalId) {
-        this.articalId = articalId;
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     /**
-     * 获取评论内容
+     * 获取创建时间
      *
-     * @return comment_content - 评论内容
+     * @return crt_time - 创建时间
      */
-    public String getCommentContent() {
-        return commentContent;
+    public Date getCrtTime() {
+        return crtTime;
     }
 
     /**
-     * 设置评论内容
+     * 设置创建时间
      *
-     * @param commentContent 评论内容
+     * @param crtTime 创建时间
      */
-    public void setCommentContent(String commentContent) {
-        this.commentContent = commentContent;
+    public void setCrtTime(Date crtTime) {
+        this.crtTime = crtTime;
     }
 
     /**
-     * 获取点赞数
+     * 获取更新时间
      *
-     * @return commnet_like - 点赞数
+     * @return upd_time - 更新时间
      */
-    public Integer getCommnetLike() {
-        return commnetLike;
+    public Date getUpdTime() {
+        return updTime;
     }
 
     /**
-     * 设置点赞数
+     * 设置更新时间
      *
-     * @param commnetLike 点赞数
+     * @param updTime 更新时间
      */
-    public void setCommnetLike(Integer commnetLike) {
-        this.commnetLike = commnetLike;
+    public void setUpdTime(Date updTime) {
+        this.updTime = updTime;
     }
 
     /**
