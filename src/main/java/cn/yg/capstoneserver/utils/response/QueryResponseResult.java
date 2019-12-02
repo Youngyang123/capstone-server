@@ -18,6 +18,10 @@ public class QueryResponseResult<T> extends ResponseResult {
         this.total = total;
     }
 
+    public QueryResponseResult(List<T> data, long total){
+        this("", data, total);
+    }
+
     public List<T> getData() {
         return data;
     }

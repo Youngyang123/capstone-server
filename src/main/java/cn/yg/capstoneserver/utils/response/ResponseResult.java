@@ -1,7 +1,7 @@
 package cn.yg.capstoneserver.utils.response;
 
 public class ResponseResult {
-    private int code = 20000;
+    private int code = 10000;
     private String message;
 
     public ResponseResult(int code, String message) {

@@ -1,6 +1,7 @@
 package cn.yg.capstoneserver.biz;
 
 import cn.yg.capstoneserver.entity.User;
+import cn.yg.capstoneserver.entity.vo.UserVo;
 import cn.yg.capstoneserver.mapper.UserMapper;
 import cn.yg.capstoneserver.utils.response.LoginResponseResult;
 import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
@@ -22,35 +23,17 @@ public class UserBiz {
         return queryResponseResult;
     }
 
-    public ObjectResponseResult<User> addUser(User user) {
-        if(user.getId() == null) {
-            return new ObjectResponseResult<>(40000, "用户工号不能为空", null);
-        }
-        userMapper.insert(user);
-        return new ObjectResponseResult<>(20000, "添加成功", null);
-    }
-
-    public ResponseResult regist(User user) {
-        if(user.getId() == null) {
-            return new ResponseResult(40000, "用户工号不能为空");
-        }
-        if(userMapper.selectByPrimaryKey(user.getId()) != null) {
-            return new ResponseResult(40000, "工号已存在");
-        }
-        userMapper.insert(user);
-        return new ResponseResult(20000, "添加成功");
-    }
 
     public ResponseResult logout(String id) {
         return new ResponseResult("退出成功");
     }
 
-    public ObjectResponseResult<User> info(String id) {
-        User user = userMapper.selectByPrimaryKey(id);
-        if (user == null) {
+    public ObjectResponseResult<UserVo> info(String id) {
+        UserVo userVo = userMapper.selectUserVoById(id);
+        if (userVo == null) {
             return new ObjectResponseResult<>(40000, "用户不存在", null);
         }
-        return new ObjectResponseResult<User>(20000, "获取成功", user);
+        return new ObjectResponseResult<>(20000, "获取成功", userVo);
     }
 
     public LoginResponseResult login(String id, String passwd) {

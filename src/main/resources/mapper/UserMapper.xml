@@ -3,14 +3,22 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <mapper namespace="cn.yg.capstoneserver.mapper.UserMapper">
-    <!--<select id="selectUserVo" resultMap="" parameterType="int">-->
-        <!--select u.id, u.name, u.age, s.name school_name, a.name academy_name, m.name major_name, c.name clazz_name-->
-        <!--from user u left join school s on u.school_id = s.id-->
-                    <!--left join academy a on u.academy_id = a.id-->
-                    <!--left join major m on u.major_id = m.id-->
-                    <!--left join clazz c on u.clazz_id = c.id-->
-        <!--where u.id = ${id}-->
-    <!--</select>-->
+    <resultMap id="UserVoResultMap" type="cn.yg.capstoneserver.entity.vo.UserVo">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+        <result column="school_name" property="schoolName" jdbcType="VARCHAR"/>
+        <result column="academy_name" property="academyName" jdbcType="VARCHAR"/>
+        <result column="major_name" property="majorName" jdbcType="VARCHAR"/>
+        <result column="clazz_name" property="clazzName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="selectUserVoById" resultMap="UserVoResultMap" parameterType="String">
+        select u.id, u.name, u.age, s.name school_name, a.name academy_name, m.name major_name, c.name clazz_name
+        from user u left join school s on u.school_id = s.id
+                    left join academy a on u.academy_id = a.id
+                    left join major m on u.major_id = m.id
+                    left join clazz c on u.clazz_id = c.id
+        where u.id = #{id}
+    </select>
 </mapper>

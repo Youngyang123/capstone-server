@@ -1,10 +1,9 @@
 package cn.yg.capstoneserver.api;
 
-import cn.yg.capstoneserver.utils.request.LoginRequest;
 import cn.yg.capstoneserver.utils.request.SysAdminRequest;
-import cn.yg.capstoneserver.utils.response.SysLoginResponseResult;
 import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
 import cn.yg.capstoneserver.utils.response.ResponseResult;
+import cn.yg.capstoneserver.utils.response.SysLoginResponseResult;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -2,10 +2,11 @@ package cn.yg.capstoneserver.controller;
 
 import cn.yg.capstoneserver.api.UserControllerApi;
 import cn.yg.capstoneserver.biz.UserBiz;
-import cn.yg.capstoneserver.entity.User;
+import cn.yg.capstoneserver.entity.vo.UserVo;
 import cn.yg.capstoneserver.utils.request.LoginRequest;
 import cn.yg.capstoneserver.utils.response.LoginResponseResult;
 import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
+import cn.yg.capstoneserver.utils.response.QueryResponseResult;
 import cn.yg.capstoneserver.utils.response.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class UserController implements UserControllerApi {
 
     @Override
     @GetMapping("info/{id}")
-    public ObjectResponseResult<User> info(@PathVariable String id) {
+    public ObjectResponseResult<UserVo> info(@PathVariable String id) {
         return userBiz.info(id);
     }
 
@@ -35,9 +36,6 @@ public class UserController implements UserControllerApi {
         return userBiz.logout(id);
     }
 
-    @Override
-    @PostMapping("regist")
-    public ResponseResult regist(User user) {
-        return userBiz.regist(user);
-    }
+
+
 }

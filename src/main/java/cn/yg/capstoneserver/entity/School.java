@@ -29,11 +29,13 @@ public class School {
     @Column(name = "upd_time")
     private Date updTime;
 
-    private String attr1;
+    @Column(name = "build_time")
+    private Date buildTime;
 
-    private String attr2;
+    @Column(name = "school_desc")
+    private String schoolDesc;
 
-    private String attr3;
+    private String website;
 
     private String attr4;
 
@@ -124,45 +126,45 @@ public class School {
     }
 
     /**
-     * @return attr1
+     * @return buildTime 成立时间
      */
-    public String getAttr1() {
-        return attr1;
+    public Date getBuildTime() {
+        return buildTime;
     }
 
     /**
-     * @param attr1
+     * @param buildTime 成立时间
      */
-    public void setAttr1(String attr1) {
-        this.attr1 = attr1;
+    public void setBuildTime(Date buildTime) {
+        this.buildTime = buildTime;
     }
 
     /**
-     * @return attr2
+     * @return schoolDesc 学校描述
      */
-    public String getAttr2() {
-        return attr2;
+    public String getSchoolDesc() {
+        return schoolDesc;
     }
 
     /**
-     * @param attr2
+     * @param schoolDesc 学校描述
      */
-    public void setAttr2(String attr2) {
-        this.attr2 = attr2;
+    public void setSchoolDesc(String schoolDesc) {
+        this.schoolDesc = schoolDesc;
     }
 
     /**
      * @return attr3
      */
-    public String getAttr3() {
-        return attr3;
+    public String getWebsite() {
+        return website;
     }
 
     /**
      * @param attr3
      */
-    public void setAttr3(String attr3) {
-        this.attr3 = attr3;
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
     /**
