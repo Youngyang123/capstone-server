@@ -45,12 +45,13 @@ public class BaseController<Biz extends BaseBiz,Entity> {
 
     @GetMapping("all")
     @ResponseBody
-    public List<Entity> all(){
-        return baseBiz.selectListAll();
+    public QueryResponseResult<Entity> all(){
+        List list = baseBiz.selectListAll();
+        return new QueryResponseResult<Entity>(list, list.size());
     }
     @GetMapping("page")
     @ResponseBody
-    public QueryResponseResult<Entity> list(@RequestParam Map<String, Object> params){
+    public QueryResponseResult<Entity> list(Map<String, Object> params){
         Query query = new Query(params);
         return baseBiz.selectByQuery(query);
     }

@@ -95,7 +95,7 @@ public class BaseBiz<M extends Mapper<T>, T> {
                 if (key.contains("_")){
                     String[] s = key.split("_");
                     if(s.length != 2) {
-                        throw new RuntimeException("请求参数最多自能包含一个字符：[-]");
+                        throw new RuntimeException("请求参数最多自能包含一个字符：[_]");
                     }
                     // 等于
                     if (s[1].equals("eq")){

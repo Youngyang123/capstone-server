@@ -1,10 +1,16 @@
 package cn.yg.capstoneserver.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+import tk.mybatis.mapper.annotation.KeySql;
+import tk.mybatis.mapper.code.IdentityDialect;
+
 import java.util.Date;
 import javax.persistence.*;
 
 public class School {
     @Id
+    @KeySql(dialect = IdentityDialect.MYSQL)
     private Integer id;
 
     /**
@@ -21,15 +27,19 @@ public class School {
      * 创建时间
      */
     @Column(name = "crt_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date crtTime;
 
     /**
      * 更新时间
      */
     @Column(name = "upd_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updTime;
 
     @Column(name = "build_time")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date buildTime;
 
     @Column(name = "school_desc")
