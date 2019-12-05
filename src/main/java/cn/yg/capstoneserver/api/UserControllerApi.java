@@ -1,6 +1,6 @@
 package cn.yg.capstoneserver.api;
 
-import cn.yg.capstoneserver.entity.vo.UserVo;
+import cn.yg.capstoneserver.entity.User;
 import cn.yg.capstoneserver.utils.request.LoginRequest;
 import cn.yg.capstoneserver.utils.response.LoginResponseResult;
 import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
@@ -14,7 +14,7 @@ public interface UserControllerApi {
     LoginResponseResult login(LoginRequest loginRequest);
 
     @ApiOperation("获取用户信息")
-    ObjectResponseResult<UserVo> info(String id);
+    ObjectResponseResult<User> info(String id);
 
     @ApiOperation("用户退出")
     ResponseResult logout(String id);

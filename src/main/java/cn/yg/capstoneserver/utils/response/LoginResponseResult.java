@@ -4,7 +4,11 @@ public class LoginResponseResult extends ResponseResult {
     private String uid;
 
     public LoginResponseResult(int code, String message, String uid) {
-        super(code, message);
+        super(code, message, true);
+        this.uid = uid;
+    }
+    public LoginResponseResult(int code, String message, String uid, boolean success) {
+        super(code, message, success);
         this.uid = uid;
     }
 

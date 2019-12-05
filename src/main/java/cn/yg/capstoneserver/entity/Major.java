@@ -42,9 +42,10 @@ public class Major {
     @Column(name = "upd_time")
     private Date updTime;
 
-    private String attr1;
-
-    private String attr2;
+    @Column(name = "school_name")
+    private String schoolName;
+    @Column(name = "academy_name")
+    private String academyName;
 
     private String attr3;
 
@@ -172,32 +173,20 @@ public class Major {
         this.updTime = updTime;
     }
 
-    /**
-     * @return attr1
-     */
-    public String getAttr1() {
-        return attr1;
+    public String getSchoolName() {
+        return schoolName;
     }
 
-    /**
-     * @param attr1
-     */
-    public void setAttr1(String attr1) {
-        this.attr1 = attr1;
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
     }
 
-    /**
-     * @return attr2
-     */
-    public String getAttr2() {
-        return attr2;
+    public String getAcademyName() {
+        return academyName;
     }
 
-    /**
-     * @param attr2
-     */
-    public void setAttr2(String attr2) {
-        this.attr2 = attr2;
+    public void setAcademyName(String academyName) {
+        this.academyName = academyName;
     }
 
     /**

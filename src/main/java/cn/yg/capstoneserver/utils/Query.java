@@ -27,7 +27,7 @@ public class Query extends LinkedHashMap<String, Object> {
 
     public Query(Map<String, Object> params){
         this.putAll(params);
-        //鍒嗛〉鍙傛暟
+
         if(params.get("page")!=null) {
             this.pageNum = Integer.parseInt(params.get("pageNum").toString());
         }

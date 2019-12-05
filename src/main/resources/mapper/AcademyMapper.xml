@@ -11,28 +11,10 @@
     <result column="owner" property="owner" jdbcType="VARCHAR" />
     <result column="crt_time" property="crtTime" jdbcType="DATE" />
     <result column="upd_time" property="updTime" jdbcType="DATE" />
-    <result column="attr1" property="attr1" jdbcType="VARCHAR" />
+    <result column="school_name" property="schoolName" jdbcType="VARCHAR" />
     <result column="attr2" property="attr2" jdbcType="VARCHAR" />
     <result column="attr3" property="attr3" jdbcType="VARCHAR" />
     <result column="attr4" property="attr4" jdbcType="VARCHAR" />
   </resultMap>
 
-  <resultMap id="VoResultMap" type="cn.yg.capstoneserver.entity.vo.AcademyVo" >
-    <result column="school_name" property="schoolName" jdbcType="VARCHAR" />
-  </resultMap>
-
-  <select id="selectVo" parameterType="academyVo" resultMap="VoResultMap">
-    select a.*, s.name school_name
-    from academy a left join school s on a.school_id = s.id
-    where 1 = 1
-    <if test="schoolName != null and schoolName != ''">
-      and s.name like #{schoolName}
-    </if>
-    <if test="name != null and name != ''">
-      and s.name like #{name}
-    </if>
-    <if test="owner != null and owner != ''">
-      and a.owner like #{owner}
-    </if>
-  </select>
 </mapper>

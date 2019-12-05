@@ -1,10 +1,14 @@
 package cn.yg.capstoneserver.entity;
 
+import tk.mybatis.mapper.annotation.KeySql;
+import tk.mybatis.mapper.code.IdentityDialect;
+
 import java.util.Date;
 import javax.persistence.*;
 
 public class Academy {
     @Id
+    @KeySql(dialect = IdentityDialect.MYSQL)
     private Integer id;
 
     /**
@@ -35,7 +39,8 @@ public class Academy {
     @Column(name = "upd_time")
     private Date updTime;
 
-    private String attr1;
+    @Column(name = "school_name")
+    private String schoolName;
 
     private String attr2;
 
@@ -150,15 +155,15 @@ public class Academy {
     /**
      * @return attr1
      */
-    public String getAttr1() {
-        return attr1;
+    public String getSchoolName() {
+        return schoolName;
     }
 
     /**
      * @param attr1
      */
-    public void setAttr1(String attr1) {
-        this.attr1 = attr1;
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
     }
 
     /**

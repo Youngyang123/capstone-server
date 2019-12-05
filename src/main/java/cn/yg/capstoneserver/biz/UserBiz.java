@@ -1,7 +1,6 @@
 package cn.yg.capstoneserver.biz;
 
 import cn.yg.capstoneserver.entity.User;
-import cn.yg.capstoneserver.entity.vo.UserVo;
 import cn.yg.capstoneserver.mapper.UserMapper;
 import cn.yg.capstoneserver.utils.response.LoginResponseResult;
 import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
@@ -28,12 +27,12 @@ public class UserBiz {
         return new ResponseResult("退出成功");
     }
 
-    public ObjectResponseResult<UserVo> info(String id) {
-        UserVo userVo = userMapper.selectUserVoById(id);
-        if (userVo == null) {
+    public ObjectResponseResult<User> info(String id) {
+        User user = userMapper.selectByPrimaryKey(id);
+        if (user == null) {
             return new ObjectResponseResult<>(40000, "用户不存在", null);
         }
-        return new ObjectResponseResult<>(20000, "获取成功", userVo);
+        return new ObjectResponseResult<>(20000, "获取成功", user);
     }
 
     public LoginResponseResult login(String id, String passwd) {

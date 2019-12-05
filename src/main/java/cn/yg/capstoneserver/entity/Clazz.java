@@ -53,11 +53,12 @@ public class Clazz {
     @Column(name = "upd_time")
     private Date updTime;
 
-    private String attr1;
-
-    private String attr2;
-
-    private String attr3;
+    @Column(name = "school_name")
+    private String schoolName;
+    @Column(name = "academy_name")
+    private String academyName;
+    @Column(name = "major_name")
+    private String majorName;
 
     private String attr4;
 
@@ -219,46 +220,28 @@ public class Clazz {
         this.updTime = updTime;
     }
 
-    /**
-     * @return attr1
-     */
-    public String getAttr1() {
-        return attr1;
+    public String getSchoolName() {
+        return schoolName;
     }
 
-    /**
-     * @param attr1
-     */
-    public void setAttr1(String attr1) {
-        this.attr1 = attr1;
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
     }
 
-    /**
-     * @return attr2
-     */
-    public String getAttr2() {
-        return attr2;
+    public String getAcademyName() {
+        return academyName;
     }
 
-    /**
-     * @param attr2
-     */
-    public void setAttr2(String attr2) {
-        this.attr2 = attr2;
+    public void setAcademyName(String academyName) {
+        this.academyName = academyName;
     }
 
-    /**
-     * @return attr3
-     */
-    public String getAttr3() {
-        return attr3;
+    public String getMajorName() {
+        return majorName;
     }
 
-    /**
-     * @param attr3
-     */
-    public void setAttr3(String attr3) {
-        this.attr3 = attr3;
+    public void setMajorName(String majorName) {
+        this.majorName = majorName;
     }
 
     /**

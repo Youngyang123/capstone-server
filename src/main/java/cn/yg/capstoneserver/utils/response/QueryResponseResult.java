@@ -6,8 +6,14 @@ public class QueryResponseResult<T> extends ResponseResult {
     private List<T> data;
     private long total;
 
+    public QueryResponseResult(int code, String message, List<T> data, long total, boolean success) {
+        super(code, message, success);
+        this.data = data;
+        this.total = total;
+    }
+
     public QueryResponseResult(int code, String message, List<T> data, long total) {
-        super(code, message);
+        super(code, message, true);
         this.data = data;
         this.total = total;
     }
@@ -16,6 +22,21 @@ public class QueryResponseResult<T> extends ResponseResult {
         super(message);
         this.data = data;
         this.total = total;
+    }
+
+    public QueryResponseResult data(List<T> data) {
+        this.setData(data);
+        return this;
+    }
+
+    public QueryResponseResult total(long total) {
+        this.setTotal(total);
+        return this;
+    }
+
+    public QueryResponseResult message(String message) {
+        this.setMessage(message);
+        return this;
     }
 
     public QueryResponseResult(List<T> data, long total){

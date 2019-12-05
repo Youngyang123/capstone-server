@@ -20,20 +20,45 @@ public class User {
     private String majorId;
     @Column(name = "clazz_id")
     private String clazzId;
+    @Column(name = "school_name")
+    private String schoolName;
+    @Column(name = "academy_name")
+    private String academyName;
+    @Column(name = "major_name")
+    private String majorName;
+    @Column(name = "clazz_name")
+    private String clazzName;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", passwd='" + passwd + '\'' +
-                ", photo='" + photo + '\'' +
-                ", age=" + age +
-                ", schoolId='" + schoolId + '\'' +
-                ", academyId='" + academyId + '\'' +
-                ", majorId='" + majorId + '\'' +
-                ", clazzId='" + clazzId + '\'' +
-                '}';
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
+    }
+
+    public String getAcademyName() {
+        return academyName;
+    }
+
+    public void setAcademyName(String academyName) {
+        this.academyName = academyName;
+    }
+
+    public String getMajorName() {
+        return majorName;
+    }
+
+    public void setMajorName(String majorName) {
+        this.majorName = majorName;
+    }
+
+    public String getClazzName() {
+        return clazzName;
+    }
+
+    public void setClazzName(String clazzName) {
+        this.clazzName = clazzName;
     }
 
     public String getId() {
