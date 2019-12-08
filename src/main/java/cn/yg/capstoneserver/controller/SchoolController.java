@@ -3,12 +3,16 @@ package cn.yg.capstoneserver.controller;
 import cn.yg.capstoneserver.biz.SchoolBiz;
 import cn.yg.capstoneserver.entity.School;
 import cn.yg.capstoneserver.utils.controller.BaseController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("school")
+@CrossOrigin
 public class SchoolController extends BaseController<SchoolBiz, School> {
 
-
+    @PostMapping
+    public ObjectResponseResult<School> add(@RequestBody School school){
+        return baseBiz.add(school);
+    }
 }

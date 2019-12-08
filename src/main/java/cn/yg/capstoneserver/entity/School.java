@@ -1,16 +1,10 @@
 package cn.yg.capstoneserver.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-import tk.mybatis.mapper.annotation.KeySql;
-import tk.mybatis.mapper.code.IdentityDialect;
-
 import java.util.Date;
 import javax.persistence.*;
 
 public class School {
     @Id
-    @KeySql(dialect = IdentityDialect.MYSQL)
     private Integer id;
 
     /**
@@ -27,23 +21,29 @@ public class School {
      * 创建时间
      */
     @Column(name = "crt_time")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date crtTime;
 
     /**
      * 更新时间
      */
     @Column(name = "upd_time")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updTime;
 
+    /**
+     * 学校成立时间
+     */
     @Column(name = "build_time")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date buildTime;
 
+    /**
+     * 学校描述
+     */
     @Column(name = "school_desc")
     private String schoolDesc;
 
+    /**
+     * 官网
+     */
     private String website;
 
     private String attr4;
@@ -135,27 +135,35 @@ public class School {
     }
 
     /**
-     * @return buildTime 成立时间
+     * 获取学校成立时间
+     *
+     * @return build_time - 学校成立时间
      */
     public Date getBuildTime() {
         return buildTime;
     }
 
     /**
-     * @param buildTime 成立时间
+     * 设置学校成立时间
+     *
+     * @param buildTime 学校成立时间
      */
     public void setBuildTime(Date buildTime) {
         this.buildTime = buildTime;
     }
 
     /**
-     * @return schoolDesc 学校描述
+     * 获取学校描述
+     *
+     * @return school_desc - 学校描述
      */
     public String getSchoolDesc() {
         return schoolDesc;
     }
 
     /**
+     * 设置学校描述
+     *
      * @param schoolDesc 学校描述
      */
     public void setSchoolDesc(String schoolDesc) {
@@ -163,14 +171,18 @@ public class School {
     }
 
     /**
-     * @return attr3
+     * 获取官网
+     *
+     * @return website - 官网
      */
     public String getWebsite() {
         return website;
     }
 
     /**
-     * @param attr3
+     * 设置官网
+     *
+     * @param website 官网
      */
     public void setWebsite(String website) {
         this.website = website;

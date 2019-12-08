@@ -25,8 +25,8 @@ public class Artical {
     /**
      * 评论数
      */
-    @Column(name = "comment_id")
-    private Integer commentId;
+    @Column(name = "comment_count")
+    private Integer commentCount;
 
     /**
      * 图片
@@ -40,11 +40,19 @@ public class Artical {
     @Column(name = "crt_time")
     private Date crtTime;
 
-    private String attr2;
+    /**
+     * 分类id
+     */
+    @Column(name = "category_id")
+    private Integer categoryId;
 
-    private String attr3;
+    /**
+     * 分类名称
+     */
+    @Column(name = "category_name")
+    private String categoryName;
 
-    private String attr4;
+    private String content;
 
     /**
      * @return id
@@ -117,19 +125,19 @@ public class Artical {
     /**
      * 获取评论数
      *
-     * @return comment_id - 评论数
+     * @return comment_count - 评论数
      */
-    public Integer getCommentId() {
-        return commentId;
+    public Integer getCommentCount() {
+        return commentCount;
     }
 
     /**
      * 设置评论数
      *
-     * @param commentId 评论数
+     * @param commentCount 评论数
      */
-    public void setCommentId(Integer commentId) {
-        this.commentId = commentId;
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
     }
 
     /**
@@ -169,44 +177,52 @@ public class Artical {
     }
 
     /**
-     * @return attr2
+     * 获取分类id
+     *
+     * @return category_id - 分类id
      */
-    public String getAttr2() {
-        return attr2;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
     /**
-     * @param attr2
+     * 设置分类id
+     *
+     * @param categoryId 分类id
      */
-    public void setAttr2(String attr2) {
-        this.attr2 = attr2;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
     /**
-     * @return attr3
+     * 获取分类名称
+     *
+     * @return category_name - 分类名称
      */
-    public String getAttr3() {
-        return attr3;
+    public String getCategoryName() {
+        return categoryName;
     }
 
     /**
-     * @param attr3
+     * 设置分类名称
+     *
+     * @param categoryName 分类名称
      */
-    public void setAttr3(String attr3) {
-        this.attr3 = attr3;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     /**
-     * @return attr4
+     * @return content
      */
-    public String getAttr4() {
-        return attr4;
+    public String getContent() {
+        return content;
     }
 
     /**
-     * @param attr4
+     * @param content
      */
-    public void setAttr4(String attr4) {
-        this.attr4 = attr4;
+    public void setContent(String content) {
+        this.content = content;
     }
 }

@@ -26,11 +26,14 @@
         <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}"
                              type="XMLMAPPER"/>
 
+    	<table tableName= "school" domainObjectName="School"/>
     	<table tableName= "academy" domainObjectName="Academy"/>
     	<table tableName= "major" domainObjectName="Major"/>
     	<table tableName= "clazz" domainObjectName="Clazz"/>
     	<table tableName= "artical" domainObjectName="Artical"/>
-    	<table tableName= "artical_content" domainObjectName="ArticalContent"/>
     	<table tableName= "comment" domainObjectName="Comment"/>
+    	<table tableName= "advice" domainObjectName="Advice"/>
+    	<table tableName= "category" domainObjectName="Category"/>
+    	<table tableName= "user" domainObjectName="User"/>
     </context>
 </generatorConfiguration>

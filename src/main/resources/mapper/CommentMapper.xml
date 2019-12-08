@@ -10,8 +10,8 @@
     <result column="artical_id" property="articalId" jdbcType="INTEGER" />
     <result column="comment_content" property="commentContent" jdbcType="VARCHAR" />
     <result column="commnet_like" property="commnetLike" jdbcType="INTEGER" />
-    <result column="attr1" property="attr1" jdbcType="VARCHAR" />
-    <result column="attr2" property="attr2" jdbcType="VARCHAR" />
+    <result column="crtTime" property="crttime" jdbcType="TIMESTAMP" />
+    <result column="uname" property="uname" jdbcType="VARCHAR" />
     <result column="attr3" property="attr3" jdbcType="VARCHAR" />
     <result column="attr4" property="attr4" jdbcType="VARCHAR" />
   </resultMap>

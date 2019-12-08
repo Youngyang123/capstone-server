@@ -3,6 +3,7 @@ package cn.yg.capstoneserver.controller;
 import cn.yg.capstoneserver.api.UserControllerApi;
 import cn.yg.capstoneserver.biz.UserBiz;
 import cn.yg.capstoneserver.entity.User;
+import cn.yg.capstoneserver.utils.controller.BaseController;
 import cn.yg.capstoneserver.utils.request.LoginRequest;
 import cn.yg.capstoneserver.utils.response.LoginResponseResult;
 import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("user")
 @CrossOrigin
-public class UserController implements UserControllerApi {
+public class UserController extends BaseController<UserBiz, User> implements UserControllerApi {
     @Autowired
     private UserBiz userBiz;
 
@@ -33,6 +34,11 @@ public class UserController implements UserControllerApi {
     @GetMapping("logout/{id}")
     public ResponseResult logout(@PathVariable String id) {
         return userBiz.logout(id);
+    }
+
+    @PostMapping
+    public ObjectResponseResult add(@RequestBody User user) {
+        return userBiz.add(user);
     }
 
 

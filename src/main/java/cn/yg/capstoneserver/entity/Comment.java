@@ -1,5 +1,6 @@
 package cn.yg.capstoneserver.entity;
 
+import java.util.Date;
 import javax.persistence.*;
 
 public class Comment {
@@ -29,9 +30,13 @@ public class Comment {
     @Column(name = "commnet_like")
     private Integer commnetLike;
 
-    private String attr1;
+    @Column(name = "crtTime")
+    private Date crttime;
 
-    private String attr2;
+    /**
+     * 用户名
+     */
+    private String uname;
 
     private String attr3;
 
@@ -124,31 +129,35 @@ public class Comment {
     }
 
     /**
-     * @return attr1
+     * @return crtTime
      */
-    public String getAttr1() {
-        return attr1;
+    public Date getCrttime() {
+        return crttime;
     }
 
     /**
-     * @param attr1
+     * @param crttime
      */
-    public void setAttr1(String attr1) {
-        this.attr1 = attr1;
+    public void setCrttime(Date crttime) {
+        this.crttime = crttime;
     }
 
     /**
-     * @return attr2
+     * 获取用户名
+     *
+     * @return uname - 用户名
      */
-    public String getAttr2() {
-        return attr2;
+    public String getUname() {
+        return uname;
     }
 
     /**
-     * @param attr2
+     * 设置用户名
+     *
+     * @param uname 用户名
      */
-    public void setAttr2(String attr2) {
-        this.attr2 = attr2;
+    public void setUname(String uname) {
+        this.uname = uname;
     }
 
     /**

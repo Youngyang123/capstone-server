@@ -12,11 +12,11 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="clazz_teacher" property="clazzTeacher" jdbcType="VARCHAR" />
     <result column="monitor" property="monitor" jdbcType="VARCHAR" />
-    <result column="crt_time" property="crtTime" jdbcType="DATE" />
-    <result column="upd_time" property="updTime" jdbcType="DATE" />
-    <result column="attr1" property="attr1" jdbcType="VARCHAR" />
-    <result column="attr2" property="attr2" jdbcType="VARCHAR" />
-    <result column="attr3" property="attr3" jdbcType="VARCHAR" />
+    <result column="crt_time" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="upd_time" property="updTime" jdbcType="TIMESTAMP" />
+    <result column="school_name" property="schoolName" jdbcType="VARCHAR" />
+    <result column="academy_name" property="academyName" jdbcType="VARCHAR" />
+    <result column="major_name" property="majorName" jdbcType="VARCHAR" />
     <result column="attr4" property="attr4" jdbcType="VARCHAR" />
   </resultMap>
 </mapper>

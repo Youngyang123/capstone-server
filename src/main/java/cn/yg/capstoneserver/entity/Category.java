@@ -2,23 +2,17 @@ package cn.yg.capstoneserver.entity;
 
 import javax.persistence.*;
 
-@Table(name = "artical_content")
-public class ArticalContent {
+public class Category {
     @Id
     private Integer id;
 
-    /**
-     * 文章id
-     */
-    @Column(name = "artical_id")
-    private Integer articalId;
+    private Integer pid;
 
-    /**
-     * 文章内容
-     */
-    private String content;
+    private String name;
 
-    private String attr1;
+    private String description;
+
+    private String url;
 
     private String attr2;
 
@@ -41,53 +35,59 @@ public class ArticalContent {
     }
 
     /**
-     * 获取文章id
-     *
-     * @return artical_id - 文章id
+     * @return pid
      */
-    public Integer getArticalId() {
-        return articalId;
+    public Integer getPid() {
+        return pid;
     }
 
     /**
-     * 设置文章id
-     *
-     * @param articalId 文章id
+     * @param pid
      */
-    public void setArticalId(Integer articalId) {
-        this.articalId = articalId;
+    public void setPid(Integer pid) {
+        this.pid = pid;
     }
 
     /**
-     * 获取文章内容
-     *
-     * @return content - 文章内容
+     * @return name
      */
-    public String getContent() {
-        return content;
+    public String getName() {
+        return name;
     }
 
     /**
-     * 设置文章内容
-     *
-     * @param content 文章内容
+     * @param name
      */
-    public void setContent(String content) {
-        this.content = content;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
-     * @return attr1
+     * @return description
      */
-    public String getAttr1() {
-        return attr1;
+    public String getDescription() {
+        return description;
     }
 
     /**
-     * @param attr1
+     * @param description
      */
-    public void setAttr1(String attr1) {
-        this.attr1 = attr1;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * @return url
+     */
+    public String getUrl() {
+        return url;
+    }
+
+    /**
+     * @param url
+     */
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     /**

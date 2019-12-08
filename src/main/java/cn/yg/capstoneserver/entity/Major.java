@@ -44,6 +44,7 @@ public class Major {
 
     @Column(name = "school_name")
     private String schoolName;
+
     @Column(name = "academy_name")
     private String academyName;
 
@@ -173,18 +174,30 @@ public class Major {
         this.updTime = updTime;
     }
 
+    /**
+     * @return school_name
+     */
     public String getSchoolName() {
         return schoolName;
     }
 
+    /**
+     * @param schoolName
+     */
     public void setSchoolName(String schoolName) {
         this.schoolName = schoolName;
     }
 
+    /**
+     * @return academy_name
+     */
     public String getAcademyName() {
         return academyName;
     }
 
+    /**
+     * @param academyName
+     */
     public void setAcademyName(String academyName) {
         this.academyName = academyName;
     }

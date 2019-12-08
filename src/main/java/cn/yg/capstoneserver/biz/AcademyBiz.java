@@ -5,8 +5,13 @@ import cn.yg.capstoneserver.entity.School;
 import cn.yg.capstoneserver.mapper.AcademyMapper;
 import cn.yg.capstoneserver.utils.biz.BaseBiz;
 import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
+import cn.yg.capstoneserver.utils.response.QueryResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
+
+import java.util.List;
+
 @Service
 public class AcademyBiz extends BaseBiz<AcademyMapper, Academy> {
 
@@ -14,12 +19,25 @@ public class AcademyBiz extends BaseBiz<AcademyMapper, Academy> {
     private SchoolBiz schoolBiz;
 
     public ObjectResponseResult add(Academy academy) {
-        School school = schoolBiz.selectById(academy.getSchoolId());
-        if(school == null) {
-            return new ObjectResponseResult().success(false);
+        Academy academyCheck = new Academy();
+        academyCheck.setSchoolId(academy.getSchoolId());
+        academyCheck.setName(academy.getName());
+        if (mapper.select(academyCheck).size() > 0) {
+            return new ObjectResponseResult()
+                    .success(false)
+                    .message("该学校已经存在这个学院");
         }
+        School school = schoolBiz.selectById(academy.getSchoolId());
         academy.setSchoolName(school.getName());
         mapper.insert(academy);
         return new ObjectResponseResult();
+    }
+
+    public QueryResponseResult<Academy> getBySchoolId(int schoolId) {
+        Example example = new Example(Academy.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("schoolId", schoolId);
+        List<Academy> academies = mapper.selectByExample(example);
+        return new QueryResponseResult<>(academies, academies.size());
     }
 }

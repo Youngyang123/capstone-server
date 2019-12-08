@@ -55,8 +55,10 @@ public class Clazz {
 
     @Column(name = "school_name")
     private String schoolName;
+
     @Column(name = "academy_name")
     private String academyName;
+
     @Column(name = "major_name")
     private String majorName;
 
@@ -220,26 +222,44 @@ public class Clazz {
         this.updTime = updTime;
     }
 
+    /**
+     * @return school_name
+     */
     public String getSchoolName() {
         return schoolName;
     }
 
+    /**
+     * @param schoolName
+     */
     public void setSchoolName(String schoolName) {
         this.schoolName = schoolName;
     }
 
+    /**
+     * @return academy_name
+     */
     public String getAcademyName() {
         return academyName;
     }
 
+    /**
+     * @param academyName
+     */
     public void setAcademyName(String academyName) {
         this.academyName = academyName;
     }
 
+    /**
+     * @return major_name
+     */
     public String getMajorName() {
         return majorName;
     }
 
+    /**
+     * @param majorName
+     */
     public void setMajorName(String majorName) {
         this.majorName = majorName;
     }

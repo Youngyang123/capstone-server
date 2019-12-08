@@ -1,14 +1,10 @@
 package cn.yg.capstoneserver.entity;
 
-import tk.mybatis.mapper.annotation.KeySql;
-import tk.mybatis.mapper.code.IdentityDialect;
-
 import java.util.Date;
 import javax.persistence.*;
 
 public class Academy {
     @Id
-    @KeySql(dialect = IdentityDialect.MYSQL)
     private Integer id;
 
     /**
@@ -153,14 +149,14 @@ public class Academy {
     }
 
     /**
-     * @return attr1
+     * @return school_name
      */
     public String getSchoolName() {
         return schoolName;
     }
 
     /**
-     * @param attr1
+     * @param schoolName
      */
     public void setSchoolName(String schoolName) {
         this.schoolName = schoolName;

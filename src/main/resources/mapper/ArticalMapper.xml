@@ -1,20 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.yg.capstoneserver.mapper.ArticalMapper">
-  <resultMap id="BaseResultMap" type="cn.yg.capstoneserver.entity.Artical">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yg.capstoneserver.mapper.ArticalMapper" >
+  <resultMap id="BaseResultMap" type="cn.yg.capstoneserver.entity.Artical" >
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="uid" jdbcType="VARCHAR" property="uid" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="like" jdbcType="INTEGER" property="like" />
-    <result column="comment_id" jdbcType="INTEGER" property="commentId" />
-    <result column="imgUrl" jdbcType="VARCHAR" property="imgurl" />
-    <result column="crt_time" jdbcType="DATE" property="crtTime" />
-    <result column="attr2" jdbcType="VARCHAR" property="attr2" />
-    <result column="attr3" jdbcType="VARCHAR" property="attr3" />
-    <result column="attr4" jdbcType="VARCHAR" property="attr4" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="like" property="like" jdbcType="INTEGER" />
+    <result column="comment_count" property="commentCount" jdbcType="INTEGER" />
+    <result column="imgUrl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="crt_time" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
-
 </mapper>
