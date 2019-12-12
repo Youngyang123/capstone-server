@@ -16,6 +16,10 @@ public class ObjectResponseResult<T> extends ResponseResult {
     public ObjectResponseResult() {
     }
 
+    public static ObjectResponseResult getInstance() {
+        return new ObjectResponseResult();
+    }
+
     public ObjectResponseResult data(T data) {
         this.setData(data);
         return this;

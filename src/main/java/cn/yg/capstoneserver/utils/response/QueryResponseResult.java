@@ -43,6 +43,13 @@ public class QueryResponseResult<T> extends ResponseResult {
         this("", data, total);
     }
 
+    public QueryResponseResult() {
+    }
+
+    public static QueryResponseResult getInstance() {
+        return new QueryResponseResult();
+    }
+
     public List<T> getData() {
         return data;
     }

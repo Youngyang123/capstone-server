@@ -52,6 +52,11 @@ public class Artical {
     @Column(name = "category_name")
     private String categoryName;
 
+    /**
+     * 用户名
+     */
+    private String uname;
+
     private String content;
 
     /**
@@ -210,6 +215,24 @@ public class Artical {
      */
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    /**
+     * 获取用户名
+     *
+     * @return uname - 用户名
+     */
+    public String getUname() {
+        return uname;
+    }
+
+    /**
+     * 设置用户名
+     *
+     * @param uname 用户名
+     */
+    public void setUname(String uname) {
+        this.uname = uname;
     }
 
     /**

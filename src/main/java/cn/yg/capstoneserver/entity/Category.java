@@ -11,10 +11,10 @@ public class Category {
     private String name;
 
     private String description;
+    @Column(name = "category_order")
+    private Integer categoryOrder;
 
-    private String url;
-
-    private String attr2;
+    private String icon;
 
     private String attr3;
 
@@ -77,31 +77,31 @@ public class Category {
     }
 
     /**
-     * @return url
+     * @return categoryOrder
      */
-    public String getUrl() {
-        return url;
+    public Integer getCategoryOrder() {
+        return categoryOrder;
     }
 
     /**
      * @param url
      */
-    public void setUrl(String url) {
-        this.url = url;
+    public void setCategoryOrder(Integer categoryOrder) {
+        this.categoryOrder = categoryOrder;
     }
 
     /**
-     * @return attr2
+     * @return icon
      */
-    public String getAttr2() {
-        return attr2;
+    public String getIcon() {
+        return icon;
     }
 
     /**
-     * @param attr2
+     * @param icon
      */
-    public void setAttr2(String attr2) {
-        this.attr2 = attr2;
+    public void setAttr2(String icon) {
+        this.icon = icon;
     }
 
     /**

@@ -14,6 +14,7 @@
     <result column="crt_time" property="crtTime" jdbcType="TIMESTAMP" />
     <result column="category_id" property="categoryId" jdbcType="INTEGER" />
     <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+    <result column="uname" property="uname" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
 </mapper>
