@@ -41,7 +41,7 @@ public class FtpUtil {
             ftp.login(username, password);// 登录
             reply = ftp.getReplyCode();
             if (!FTPReply.isPositiveCompletion(reply)) {
-                logger.error("FTPReply.isPositiveCompletion(reply) = false");
+                logger.error("FTPReply.isPositiveCompletion(reply) = false" + " code=" + reply);
                 ftp.disconnect();
                 return result;
             }

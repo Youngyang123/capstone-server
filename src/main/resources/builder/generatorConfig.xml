@@ -30,13 +30,16 @@
     	<!--<table tableName= "academy" domainObjectName="Academy"/>-->
     	<!--<table tableName= "major" domainObjectName="Major"/>-->
     	<!--<table tableName= "clazz" domainObjectName="Clazz"/>-->
-    	<table tableName= "artical" domainObjectName="Artical"/>
-    	<!--<table tableName= "comment" domainObjectName="Comment"/>-->
+    	<!--<table tableName= "artical" domainObjectName="Artical"/>-->
+    	<!--<table tableName= "user_focus" domainObjectName="UserFocus"/>-->
+    	<table tableName= "comment" domainObjectName="Comment"/>
     	<!--<table tableName= "advice" domainObjectName="Advice"/>-->
     	<!--<table tableName= "category" domainObjectName="Category"/>-->
     	<!--<table tableName= "user" domainObjectName="User"/>-->
     	<!--<table tableName= "menu" domainObjectName="Menu"/>-->
     	<!--<table tableName= "tag" domainObjectName="Tag"/>-->
-    	<!--<table tableName= "artical_tag_ref" domainObjectName="articalTagRef"/>-->
+    	<!--<table tableName= "artical_tag_ref" domainObjectName="ArticalTagRef"/>-->
+    	<!--<table tableName= "user_like_ref" domainObjectName="UserLikeRef"/>-->
+    	<!--<table tableName= "setting" domainObjectName="Setting"/>-->
     </context>
 </generatorConfiguration>

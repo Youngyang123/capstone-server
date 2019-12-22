@@ -8,13 +8,14 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="uid" property="uid" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="like" property="like" jdbcType="INTEGER" />
+    <result column="artical_like" property="articalLike" jdbcType="INTEGER" />
     <result column="comment_count" property="commentCount" jdbcType="INTEGER" />
     <result column="imgUrl" property="imgurl" jdbcType="VARCHAR" />
     <result column="crt_time" property="crtTime" jdbcType="TIMESTAMP" />
     <result column="category_id" property="categoryId" jdbcType="INTEGER" />
     <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
     <result column="uname" property="uname" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
 </mapper>

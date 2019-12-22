@@ -78,6 +78,11 @@ public class User {
     private String clazzName;
 
     /**
+     * 身份
+     */
+    private Integer identity;
+
+    /**
      * 获取学号
      *
      * @return id - 学号
@@ -309,5 +314,23 @@ public class User {
      */
     public void setClazzName(String clazzName) {
         this.clazzName = clazzName;
+    }
+
+    /**
+     * 获取身份
+     *
+     * @return identity - 身份
+     */
+    public Integer getIdentity() {
+        return identity;
+    }
+
+    /**
+     * 设置身份
+     *
+     * @param identity 身份
+     */
+    public void setIdentity(Integer identity) {
+        this.identity = identity;
     }
 }

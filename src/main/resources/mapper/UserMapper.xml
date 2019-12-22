@@ -18,5 +18,6 @@
     <result column="academy_name" property="academyName" jdbcType="VARCHAR" />
     <result column="major_name" property="majorName" jdbcType="VARCHAR" />
     <result column="clazz_name" property="clazzName" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="INTEGER" />
   </resultMap>
 </mapper>

@@ -1,5 +1,8 @@
 package cn.yg.capstoneserver.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -20,7 +23,8 @@ public class Artical {
     /**
      * 点赞数
      */
-    private Integer like;
+    @Column(name = "artical_like")
+    private Integer articalLike;
 
     /**
      * 评论数
@@ -38,6 +42,8 @@ public class Artical {
      * 创建时间
      */
     @Column(name = "crt_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date crtTime;
 
     /**
@@ -56,6 +62,8 @@ public class Artical {
      * 用户名
      */
     private String uname;
+
+    private Integer status;
 
     private String content;
 
@@ -112,19 +120,19 @@ public class Artical {
     /**
      * 获取点赞数
      *
-     * @return like - 点赞数
+     * @return artical_like - 点赞数
      */
-    public Integer getLike() {
-        return like;
+    public Integer getArticalLike() {
+        return articalLike;
     }
 
     /**
      * 设置点赞数
      *
-     * @param like 点赞数
+     * @param articalLike 点赞数
      */
-    public void setLike(Integer like) {
-        this.like = like;
+    public void setArticalLike(Integer articalLike) {
+        this.articalLike = articalLike;
     }
 
     /**
@@ -233,6 +241,20 @@ public class Artical {
      */
     public void setUname(String uname) {
         this.uname = uname;
+    }
+
+    /**
+     * @return status
+     */
+    public Integer getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status
+     */
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     /**

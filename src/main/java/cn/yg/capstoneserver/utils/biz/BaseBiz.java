@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.persistence.Column;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Map;
@@ -110,6 +111,22 @@ public class BaseBiz<M extends Mapper<T>, T> {
 
                     throw new RuntimeException("现在暂时不支持[" + s[1] +"]");
                 }
+
+                if ("sort".equals(key)) {
+                    try {
+                        Column annotation = clazz.getDeclaredField(value.toString()).getAnnotation(Column.class);
+                        if (annotation == null) {
+                            example.setOrderByClause(value.toString() + " DESC");
+                        }else {
+                            example.setOrderByClause(annotation.name() + " DESC");
+                        }
+                    } catch (NoSuchFieldException e) {
+                        e.printStackTrace();
+                        throw new RuntimeException("没有发现这个字段:"+ "[" + value.toString() +"]");
+                    }
+
+                }
+
             }
         }
 
@@ -119,4 +136,5 @@ public class BaseBiz<M extends Mapper<T>, T> {
         QueryResponseResult<T> queryResponseResult = new QueryResponseResult<>(list, pageInfo.getTotal());
         return queryResponseResult;
     }
+
 }

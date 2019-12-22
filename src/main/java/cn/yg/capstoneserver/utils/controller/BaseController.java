@@ -30,7 +30,7 @@ public class BaseController<Biz extends BaseBiz,Entity> {
         return objectResponseResult;
     }
 
-    @PutMapping("{id}")
+    @PutMapping
     @ResponseBody
     public ObjectResponseResult<Entity> update(@RequestBody Entity entity){
         baseBiz.updateSelectiveById(entity);

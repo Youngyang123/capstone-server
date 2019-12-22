@@ -10,9 +10,9 @@
     <result column="artical_id" property="articalId" jdbcType="INTEGER" />
     <result column="comment_content" property="commentContent" jdbcType="VARCHAR" />
     <result column="commnet_like" property="commnetLike" jdbcType="INTEGER" />
-    <result column="crtTime" property="crttime" jdbcType="TIMESTAMP" />
+    <result column="crt_time" property="crtTime" jdbcType="TIMESTAMP" />
     <result column="uname" property="uname" jdbcType="VARCHAR" />
-    <result column="attr3" property="attr3" jdbcType="VARCHAR" />
+    <result column="imgUrl" property="imgurl" jdbcType="VARCHAR" />
     <result column="attr4" property="attr4" jdbcType="VARCHAR" />
   </resultMap>
 </mapper>

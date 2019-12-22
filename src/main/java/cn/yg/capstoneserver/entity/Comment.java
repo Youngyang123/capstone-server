@@ -1,5 +1,8 @@
 package cn.yg.capstoneserver.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -30,15 +33,18 @@ public class Comment {
     @Column(name = "commnet_like")
     private Integer commnetLike;
 
-    @Column(name = "crtTime")
-    private Date crttime;
+    @Column(name = "crt_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+    private Date crtTime;
 
     /**
      * 用户名
      */
     private String uname;
 
-    private String attr3;
+    @Column(name = "imgUrl")
+    private String imgurl;
 
     private String attr4;
 
@@ -129,17 +135,17 @@ public class Comment {
     }
 
     /**
-     * @return crtTime
+     * @return crt_time
      */
-    public Date getCrttime() {
-        return crttime;
+    public Date getCrtTime() {
+        return crtTime;
     }
 
     /**
-     * @param crttime
+     * @param crtTime
      */
-    public void setCrttime(Date crttime) {
-        this.crttime = crttime;
+    public void setCrtTime(Date crtTime) {
+        this.crtTime = crtTime;
     }
 
     /**
@@ -161,17 +167,17 @@ public class Comment {
     }
 
     /**
-     * @return attr3
+     * @return imgUrl
      */
-    public String getAttr3() {
-        return attr3;
+    public String getImgurl() {
+        return imgurl;
     }
 
     /**
-     * @param attr3
+     * @param imgurl
      */
-    public void setAttr3(String attr3) {
-        this.attr3 = attr3;
+    public void setImgurl(String imgurl) {
+        this.imgurl = imgurl;
     }
 
     /**

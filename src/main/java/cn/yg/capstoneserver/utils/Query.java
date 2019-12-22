@@ -28,10 +28,10 @@ public class Query extends LinkedHashMap<String, Object> {
     public Query(Map<String, Object> params){
         this.putAll(params);
 
-        if(params.get("page")!=null) {
+        if(params.get("pageNum")!=null) {
             this.pageNum = Integer.parseInt(params.get("pageNum").toString());
         }
-        if(params.get("limit")!=null) {
+        if(params.get("pageSize")!=null) {
             this.pageSize = Integer.parseInt(params.get("pageSize").toString());
         }
         this.remove("pageNum");

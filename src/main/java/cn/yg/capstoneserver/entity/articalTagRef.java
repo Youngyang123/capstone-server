@@ -3,7 +3,7 @@ package cn.yg.capstoneserver.entity;
 import javax.persistence.*;
 
 @Table(name = "artical_tag_ref")
-public class articalTagRef {
+public class ArticalTagRef {
     @Id
     @Column(name = "artical_id")
     private Integer articalId;
