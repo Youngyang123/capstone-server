@@ -26,4 +26,16 @@ public class ArticalController extends BaseController<ArticalBiz, Artical> {
         Query query = new Query(params);
         return baseBiz.detailList(query);
     }
+
+    @GetMapping("teacher")
+    public QueryResponseResult teacherArtical(@RequestParam Map<String, Object> params){
+        Query query = new Query(params);
+        return baseBiz.getTeacherArtical(query);
+    }
+
+    @GetMapping("major")
+    public QueryResponseResult getMajorArtical(@RequestParam Map<String, Object> params){
+        Query query = new Query(params);
+        return baseBiz.getMajorArtical(query);
+    }
 }

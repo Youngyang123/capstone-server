@@ -3,8 +3,8 @@ package cn.yg.capstoneserver.entity;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "user_like_ref")
-public class UserLikeRef {
+@Table(name = "user_collection")
+public class UserCollection {
     @Id
     private Integer id;
 
@@ -19,7 +19,7 @@ public class UserLikeRef {
     private Integer aid;
 
     /**
-     * 点赞时间
+     * 创建时间
      */
     @Column(name = "crt_time")
     private Date crtTime;
@@ -75,18 +75,18 @@ public class UserLikeRef {
     }
 
     /**
-     * 获取点赞时间
+     * 获取创建时间
      *
-     * @return crt_time - 点赞时间
+     * @return crt_time - 创建时间
      */
     public Date getCrtTime() {
         return crtTime;
     }
 
     /**
-     * 设置点赞时间
+     * 设置创建时间
      *
-     * @param crtTime 点赞时间
+     * @param crtTime 创建时间
      */
     public void setCrtTime(Date crtTime) {
         this.crtTime = crtTime;

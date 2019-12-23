@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.yg.capstoneserver.mapper.ArticalMapper" >
-  <resultMap id="BaseResultMap" type="cn.yg.capstoneserver.entity.Artical" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="uid" property="uid" jdbcType="VARCHAR" />
-    <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="artical_like" property="articalLike" jdbcType="INTEGER" />
-    <result column="comment_count" property="commentCount" jdbcType="INTEGER" />
-    <result column="imgUrl" property="imgurl" jdbcType="VARCHAR" />
-    <result column="crt_time" property="crtTime" jdbcType="TIMESTAMP" />
-    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
-    <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
-    <result column="uname" property="uname" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="INTEGER" />
-    <result column="content" property="content" jdbcType="LONGVARCHAR" />
-  </resultMap>
+<mapper namespace="cn.yg.capstoneserver.mapper.ArticalMapper">
+    <resultMap id="BaseResultMap" type="cn.yg.capstoneserver.entity.Artical">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="uid" property="uid" jdbcType="VARCHAR"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="artical_like" property="articalLike" jdbcType="INTEGER"/>
+        <result column="comment_count" property="commentCount" jdbcType="INTEGER"/>
+        <result column="imgUrl" property="imgurl" jdbcType="VARCHAR"/>
+        <result column="crt_time" property="crtTime" jdbcType="TIMESTAMP"/>
+        <result column="category_id" property="categoryId" jdbcType="INTEGER"/>
+        <result column="category_name" property="categoryName" jdbcType="VARCHAR"/>
+        <result column="uname" property="uname" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+
+    <select id="selectByIdentity" resultMap="BaseResultMap" parameterType="int">
+        select a.*
+        from artical a
+                 inner join user u on a.uid = u.id
+        where u.identity = #{identity}
+    </select>
+
+    <select id="selectByMid" resultMap="BaseResultMap" parameterType="int">
+        select a.*
+        from artical a
+                 inner join user u on a.uid = u.id
+        where u.major_id = #{mid}
+    </select>
 </mapper>

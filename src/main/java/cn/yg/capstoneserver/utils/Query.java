@@ -1,6 +1,7 @@
 package cn.yg.capstoneserver.utils;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Query extends LinkedHashMap<String, Object> {

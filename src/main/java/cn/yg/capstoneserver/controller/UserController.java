@@ -2,14 +2,18 @@ package cn.yg.capstoneserver.controller;
 
 import cn.yg.capstoneserver.api.UserControllerApi;
 import cn.yg.capstoneserver.biz.UserBiz;
+import cn.yg.capstoneserver.entity.Major;
 import cn.yg.capstoneserver.entity.User;
 import cn.yg.capstoneserver.utils.controller.BaseController;
 import cn.yg.capstoneserver.utils.request.LoginRequest;
 import cn.yg.capstoneserver.utils.response.LoginResponseResult;
 import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
+import cn.yg.capstoneserver.utils.response.QueryResponseResult;
 import cn.yg.capstoneserver.utils.response.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("user")
@@ -39,6 +43,16 @@ public class UserController extends BaseController<UserBiz, User> implements Use
     @PostMapping
     public ObjectResponseResult add(@RequestBody User user) {
         return userBiz.add(user);
+    }
+
+    @GetMapping("myFocus")
+    public QueryResponseResult getMyFocus(@RequestParam Map<String, Object> params) {
+        return baseBiz.getMyFocus(params);
+    }
+
+    @GetMapping("focusMe")
+    public QueryResponseResult getFocusMe(@RequestParam Map<String, Object> params) {
+        return baseBiz.getFocusMe(params);
     }
 
 
