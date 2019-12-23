@@ -5,6 +5,7 @@ import cn.yg.capstoneserver.entity.UserFocus;
 import cn.yg.capstoneserver.mapper.UserFocusMapper;
 import cn.yg.capstoneserver.utils.biz.BaseBiz;
 import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Date;
 @Service
 public class UserFocusBiz extends BaseBiz<UserFocusMapper, UserFocus> {
 
+    @Autowired
     private UserBiz userBiz;
 
     public ObjectResponseResult toggle(UserFocus userFocus) {
