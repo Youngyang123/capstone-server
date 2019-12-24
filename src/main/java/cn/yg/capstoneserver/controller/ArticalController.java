@@ -38,4 +38,10 @@ public class ArticalController extends BaseController<ArticalBiz, Artical> {
         Query query = new Query(params);
         return baseBiz.getMajorArtical(query);
     }
+
+    @GetMapping("collection")
+    public ObjectResponseResult getCollection(@RequestParam Map<String, Object> params) {
+        Query query = new Query(params);
+        return baseBiz.selectCollection(query);
+    }
 }

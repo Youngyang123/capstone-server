@@ -1,10 +1,6 @@
 package cn.yg.capstoneserver.biz;
 
-import cn.yg.capstoneserver.entity.Major;
-import cn.yg.capstoneserver.entity.User;
-import cn.yg.capstoneserver.entity.UserCollection;
-import cn.yg.capstoneserver.mapper.UserCollectionMapper;
-import cn.yg.capstoneserver.mapper.UserLikeRefMapper;
+import cn.yg.capstoneserver.entity.*;
 import cn.yg.capstoneserver.mapper.UserMapper;
 import cn.yg.capstoneserver.utils.Query;
 import cn.yg.capstoneserver.utils.biz.BaseBiz;
@@ -14,11 +10,15 @@ import cn.yg.capstoneserver.utils.response.QueryResponseResult;
 import cn.yg.capstoneserver.utils.response.ResponseResult;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.BeanUtils;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.entity.Example;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +33,8 @@ public class UserBiz extends BaseBiz<UserMapper, User> {
     private MajorBiz majorBiz;
     @Autowired
     private ClazzBiz clazzBiz;
+    @Autowired
+    private ImportUserBiz importUserBiz;
     
     public QueryResponseResult findAll() {
         List<User> users = mapper.selectAll();
@@ -105,5 +107,85 @@ public class UserBiz extends BaseBiz<UserMapper, User> {
         return QueryResponseResult.getInstance()
                 .data(pageInfo.getList())
                 .total(pageInfo.getTotal());
+    }
+
+    @Async
+    public void importExcel(InputStream in, ImportUser importUser) throws IOException {
+        try {
+            XSSFWorkbook wb = new XSSFWorkbook(in);
+            Sheet sheet = wb.getSheetAt(0);
+            importUser.setStatus(2);
+            int rows = sheet.getLastRowNum();
+            for (int i=2; i<=rows; i++) {
+                Row row = sheet.getRow(i);
+                User user = new User();
+                user.setId(row.getCell(1).toString());
+                user.setName(row.getCell(2).toString());
+                user.setPasswd(row.getCell(3).toString());
+                int age = Integer.parseInt(row.getCell(4).toString());
+                user.setAge(age);
+                // 学校
+                int schoolId = Integer.parseInt(row.getCell(5).toString());
+                School school = schoolBiz.selectById(schoolId);
+                if (school == null) {
+                    String remark = "第"+ i + "行，" + "第5列学校代号不存在";
+                    importUser.setStatus(3);
+                    importUser.setRemark(remark);
+                    break;
+                }
+                user.setSchoolId(schoolId);
+                user.setSchoolName(school.getName());
+                // 学院
+                int academyId = Integer.parseInt(row.getCell(6).toString());
+                Academy academy = academyBiz.selectById(academyId);
+                if (academy == null) {
+                    String remark = "第"+ i + "行，" + "第6列学院代号不存在";
+                    importUser.setStatus(3);
+                    importUser.setRemark(remark);
+                    return;
+                }
+                user.setAcademyId(academyId);
+                user.setAcademyName(academy.getName());
+
+                // 专业
+                int majorId = Integer.parseInt(row.getCell(7).toString());
+                Major major = majorBiz.selectById(majorId);
+                if (major == null) {
+                    String remark = "第"+ i + "行，" + "第7列专业代号不存在";
+                    importUser.setStatus(3);
+                    importUser.setRemark(remark);
+                    return;
+                }
+                user.setMajorId(majorId);
+                user.setMajorName(major.getName());
+
+                // 班级
+                int clazzId = Integer.parseInt(row.getCell(8).toString());
+                Clazz clazz = clazzBiz.selectById(clazzId);
+                if (clazz == null) {
+                    String remark = "第"+ i + "行，" + "第8列班级代号不存在";
+                    importUser.setStatus(3);
+                    importUser.setRemark(remark);
+                    return;
+                }
+                user.setClazzId(clazzId);
+                user.setClazzName(clazz.getName());
+
+                // 身份
+                int identity = Integer.parseInt(row.getCell(9).toString());
+                if (identity != 1 && identity != 2) {
+                    String remark = "第"+ i + "行，" + "第9列身份代号不存在";
+                    importUser.setStatus(3);
+                    importUser.setRemark(remark);
+                    return;
+                }
+                user.setIdentity(identity);
+
+                // 加到数据库
+                this.insertSelective(user);
+            }
+        }finally {
+            importUserBiz.updateById(importUser);
+        }
     }
 }

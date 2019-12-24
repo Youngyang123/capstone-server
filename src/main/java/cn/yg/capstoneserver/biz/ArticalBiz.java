@@ -6,6 +6,7 @@ import cn.yg.capstoneserver.entity.User;
 import cn.yg.capstoneserver.entity.vo.ArticalVo;
 import cn.yg.capstoneserver.mapper.ArticalMapper;
 import cn.yg.capstoneserver.mapper.UserCollectionMapper;
+import cn.yg.capstoneserver.mapper.UserFocusMapper;
 import cn.yg.capstoneserver.mapper.UserLikeRefMapper;
 import cn.yg.capstoneserver.utils.Query;
 import cn.yg.capstoneserver.utils.biz.BaseBiz;
@@ -21,7 +22,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ArticalBiz extends BaseBiz<ArticalMapper, Artical> {
@@ -34,11 +34,12 @@ public class ArticalBiz extends BaseBiz<ArticalMapper, Artical> {
     private UserCollectionMapper userCollectionMapper;
     @Autowired
     private UserLikeRefMapper userLikeRefMapper;
-
+    @Autowired
+    private UserFocusMapper userFocusMapper;
 
     public ObjectResponseResult<Artical> add(Artical entity) {
         User user = userBiz.selectById(entity.getUid());
-        if(user == null) {
+        if (user == null) {
             return ObjectResponseResult.getInstance()
                     .message("作者不存在")
                     .success(false);
@@ -52,11 +53,13 @@ public class ArticalBiz extends BaseBiz<ArticalMapper, Artical> {
     public QueryResponseResult detailList(Query query) {
         QueryResponseResult<Artical> queryResponseResult = selectByQuery(query);
         String uid = (String) query.get("uid");
+        uid = uid!=null ? uid : (String) query.get("uid_eq");
         if (uid == null) {
-            throw new RuntimeException("必须传入uid");
+            throw new RuntimeException("必须传入uid或者uid_eq");
         }
         List<Integer> aidsOfCollection = userCollectionMapper.selectAids(uid);
         List<Integer> aidsOfUserLike = userLikeRefMapper.selectAids(uid);
+        List<String> focusIds = userFocusMapper.getFocusIds(uid);
         Setting setting = settingBiz.selectById(1);
         int wordNum = 86;
         String wordExceed = "...";
@@ -82,6 +85,9 @@ public class ArticalBiz extends BaseBiz<ArticalMapper, Artical> {
             if (aidsOfCollection.contains(artical.getId())) {
                 articalVo.setIsCollected(true);
             }
+            if (focusIds.contains(artical.getUid())) {
+                articalVo.setIsFocus(true);
+            }
 
             articalVos.add(articalVo);
         });
@@ -105,7 +111,7 @@ public class ArticalBiz extends BaseBiz<ArticalMapper, Artical> {
     }
 
     public QueryResponseResult getMajorArtical(Query query) {
-        Integer mid = (Integer) query.get("mid");
+        Integer mid = Integer.parseInt(String.valueOf(query.get("mid")));
         if (mid == null) {
             throw new RuntimeException("mid不能为null");
         }
@@ -118,4 +124,7 @@ public class ArticalBiz extends BaseBiz<ArticalMapper, Artical> {
     }
 
 
+    public ObjectResponseResult selectCollection(Query query) {
+        return null;
+    }
 }

@@ -30,6 +30,7 @@
         select a.*
         from artical a
                  inner join user u on a.uid = u.id
-        where u.major_id = #{mid}
+        where u.major_id = #{mid} and a.status = 1 order by crt_time desc
     </select>
+
 </mapper>

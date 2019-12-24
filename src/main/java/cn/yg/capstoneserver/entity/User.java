@@ -83,6 +83,12 @@ public class User {
     private Integer identity;
 
     /**
+     * 昵称
+     */
+    @Column(name = "nick_name")
+    private String nickName;
+
+    /**
      * 获取学号
      *
      * @return id - 学号
@@ -332,5 +338,23 @@ public class User {
      */
     public void setIdentity(Integer identity) {
         this.identity = identity;
+    }
+
+    /**
+     * 获取昵称
+     *
+     * @return nick_name - 昵称
+     */
+    public String getNickName() {
+        return nickName;
+    }
+
+    /**
+     * 设置昵称
+     *
+     * @param nickName 昵称
+     */
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 }

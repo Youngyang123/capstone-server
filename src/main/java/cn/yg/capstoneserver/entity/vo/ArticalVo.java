@@ -7,4 +7,5 @@ import lombok.Data;
 public class ArticalVo extends Artical {
     private Boolean isCollected;
     private Boolean isLike;
+    private Boolean isFocus;
 }
