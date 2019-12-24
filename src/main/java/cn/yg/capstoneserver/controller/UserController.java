@@ -114,7 +114,6 @@ public class UserController extends BaseController<UserBiz, User> implements Use
                     .success(false)
                     .code(40000);
         }
-
         if (user.getPasswd() != null) {
             userUpd.setPasswd(user.getPasswd());
         }
@@ -125,6 +124,4 @@ public class UserController extends BaseController<UserBiz, User> implements Use
         return ObjectResponseResult.getInstance()
                 .message("修改成功");
     }
-
-
 }
