@@ -11,7 +11,7 @@
         <result column="crt_time" property="crtTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <select id="getFocusIds" parameterType="String" resultMap="BaseResultMap">
+    <select id="getFocusIds" parameterType="String" resultType="String">
         select fid
         from user_focus
         where uid = #{uid}

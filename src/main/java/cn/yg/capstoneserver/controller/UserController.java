@@ -106,7 +106,7 @@ public class UserController extends BaseController<UserBiz, User> implements Use
 
     @PutMapping
     @Override
-    public ObjectResponseResult update(User user) {
+    public ObjectResponseResult update(@RequestBody User user) {
         User userUpd = baseBiz.selectById(user.getId());
         if (userUpd == null) {
             return ObjectResponseResult.getInstance()
@@ -117,8 +117,10 @@ public class UserController extends BaseController<UserBiz, User> implements Use
         if (user.getPasswd() != null) {
             userUpd.setPasswd(user.getPasswd());
         }
-        userUpd.setName(user.getName());
-        userUpd.setPhoto(user.getPhoto());
+
+        if (user.getPhoto() != null) {
+            userUpd.setPhoto(user.getPhoto());
+        }
         userUpd.setNickName(user.getNickName());
         baseBiz.updateById(userUpd);
         return ObjectResponseResult.getInstance()

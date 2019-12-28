@@ -1,5 +1,7 @@
 package cn.yg.capstoneserver.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 import tk.mybatis.mapper.annotation.KeySql;
 import tk.mybatis.mapper.code.IdentityDialect;
 
@@ -28,6 +30,8 @@ public class ImportUser {
      * 创建时间
      */
     @Column(name = "crt_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date crtTime;
 
     /**

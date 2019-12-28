@@ -7,6 +7,7 @@ import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,6 +23,7 @@ public class SchoolBiz extends BaseBiz<SchoolMapper, School> {
                     .success(false)
                     .message("学校已存在");
         }
+        school.setCrtTime(new Date());
         mapper.insert(school);
         return new ObjectResponseResult<>().message("添加成功");
     }

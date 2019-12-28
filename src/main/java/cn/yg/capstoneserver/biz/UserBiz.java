@@ -10,6 +10,10 @@ import cn.yg.capstoneserver.utils.response.QueryResponseResult;
 import cn.yg.capstoneserver.utils.response.ResponseResult;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -116,30 +120,53 @@ public class UserBiz extends BaseBiz<UserMapper, User> {
             Sheet sheet = wb.getSheetAt(0);
             importUser.setStatus(2);
             int rows = sheet.getLastRowNum();
-            for (int i=2; i<=rows; i++) {
+            for (int i=1; i<=rows; i++) {
                 Row row = sheet.getRow(i);
-                User user = new User();
-                user.setId(row.getCell(1).toString());
-                user.setName(row.getCell(2).toString());
-                user.setPasswd(row.getCell(3).toString());
-                int age = Integer.parseInt(row.getCell(4).toString());
-                user.setAge(age);
-                // 学校
-                int schoolId = Integer.parseInt(row.getCell(5).toString());
-                School school = schoolBiz.selectById(schoolId);
-                if (school == null) {
-                    String remark = "第"+ i + "行，" + "第5列学校代号不存在";
+                Cell cell = row.getCell(0);
+                cell.setCellType(CellType.STRING);
+                String uid = cell.getStringCellValue();
+                if (mapper.selectByPrimaryKey(uid) != null) {
+                    String remark = "第"+ i + "行，" + "第1列，学号已存在";
                     importUser.setStatus(3);
                     importUser.setRemark(remark);
-                    break;
+                    return;
+                }
+                User user = new User();
+                user.setId(uid);
+                cell = row.getCell(1);
+                cell.setCellType(CellType.STRING);
+                user.setName(cell.getStringCellValue());
+
+                cell = row.getCell(2);
+                cell.setCellType(CellType.STRING);
+                user.setPasswd(cell.getStringCellValue());
+
+                cell = row.getCell(3);
+                cell.setCellType(CellType.STRING);
+                int age = Integer.parseInt(cell.getStringCellValue());
+                user.setAge(age);
+
+                // 学校
+                cell = row.getCell(4);
+                cell.setCellType(CellType.STRING);
+                int schoolId = Integer.parseInt(cell.getStringCellValue());
+                School school = schoolBiz.selectById(schoolId);
+                if (school == null) {
+                    String remark = "第"+ i + "行，" + "第5列，学校代号不存在";
+                    importUser.setStatus(3);
+                    importUser.setRemark(remark);
+                    return;
                 }
                 user.setSchoolId(schoolId);
                 user.setSchoolName(school.getName());
+
                 // 学院
-                int academyId = Integer.parseInt(row.getCell(6).toString());
+                cell = row.getCell(5);
+                cell.setCellType(CellType.STRING);
+                int academyId = Integer.parseInt(cell.getStringCellValue());
                 Academy academy = academyBiz.selectById(academyId);
                 if (academy == null) {
-                    String remark = "第"+ i + "行，" + "第6列学院代号不存在";
+                    String remark = "第"+ i + "行，" + "第6列，学院代号不存在";
                     importUser.setStatus(3);
                     importUser.setRemark(remark);
                     return;
@@ -148,10 +175,12 @@ public class UserBiz extends BaseBiz<UserMapper, User> {
                 user.setAcademyName(academy.getName());
 
                 // 专业
-                int majorId = Integer.parseInt(row.getCell(7).toString());
+                cell = row.getCell(6);
+                cell.setCellType(CellType.STRING);
+                int majorId = Integer.parseInt(cell.getStringCellValue());
                 Major major = majorBiz.selectById(majorId);
                 if (major == null) {
-                    String remark = "第"+ i + "行，" + "第7列专业代号不存在";
+                    String remark = "第"+ i + "行，" + "第7列，专业代号不存在";
                     importUser.setStatus(3);
                     importUser.setRemark(remark);
                     return;
@@ -160,10 +189,12 @@ public class UserBiz extends BaseBiz<UserMapper, User> {
                 user.setMajorName(major.getName());
 
                 // 班级
-                int clazzId = Integer.parseInt(row.getCell(8).toString());
+                cell = row.getCell(7);
+                cell.setCellType(CellType.STRING);
+                int clazzId = Integer.parseInt(cell.getStringCellValue());
                 Clazz clazz = clazzBiz.selectById(clazzId);
                 if (clazz == null) {
-                    String remark = "第"+ i + "行，" + "第8列班级代号不存在";
+                    String remark = "第"+ i + "行，" + "第8列，班级代号不存在";
                     importUser.setStatus(3);
                     importUser.setRemark(remark);
                     return;
@@ -172,9 +203,11 @@ public class UserBiz extends BaseBiz<UserMapper, User> {
                 user.setClazzName(clazz.getName());
 
                 // 身份
-                int identity = Integer.parseInt(row.getCell(9).toString());
+                cell = row.getCell(8);
+                cell.setCellType(CellType.STRING);
+                int identity = Integer.parseInt(cell.getStringCellValue());
                 if (identity != 1 && identity != 2) {
-                    String remark = "第"+ i + "行，" + "第9列身份代号不存在";
+                    String remark = "第"+ i + "行，" + "第9列，身份代号不存在";
                     importUser.setStatus(3);
                     importUser.setRemark(remark);
                     return;
@@ -184,6 +217,8 @@ public class UserBiz extends BaseBiz<UserMapper, User> {
                 // 加到数据库
                 this.insertSelective(user);
             }
+            importUser.setRemark("导入成功");
+            importUser.setStatus(2);
         }finally {
             importUserBiz.updateById(importUser);
         }
