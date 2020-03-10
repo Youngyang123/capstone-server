@@ -12,7 +12,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("artical")
-@CrossOrigin
 public class ArticalController extends BaseController<ArticalBiz, Artical> {
 
     @PostMapping

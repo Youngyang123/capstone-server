@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("major")
-@CrossOrigin
 public class MajorController extends BaseController<MajorBiz, Major> {
     @PostMapping
     public ObjectResponseResult<Major> add(@RequestBody Major major){

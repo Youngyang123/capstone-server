@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("school")
-@CrossOrigin
 public class SchoolController extends BaseController<SchoolBiz, School> {
 
     @PostMapping

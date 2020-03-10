@@ -7,16 +7,23 @@ import cn.yg.capstoneserver.utils.biz.BaseBiz;
 import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class UserLikeRefBiz extends BaseBiz<UserLikeRefMapper, UserLikeRef> {
 
     @Autowired
     private ArticalBiz articalBiz;
 
+    /**
+     * 点赞或者取消点赞
+     * @param userLikeRef
+     * @return
+     */
     public ObjectResponseResult toggle(UserLikeRef userLikeRef) {
         Artical artical = articalBiz.selectById(userLikeRef.getAid());
         if (artical == null ) {

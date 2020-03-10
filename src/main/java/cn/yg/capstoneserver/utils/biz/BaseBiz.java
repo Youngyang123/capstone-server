@@ -84,6 +84,11 @@ public class BaseBiz<M extends Mapper<T>, T> {
         return mapper.selectCountByExample(example);
     }
 
+    /**
+     * 参数可以根据--字段名_操作符的方式快捷查询数据，如name_eq=xxx、name_like=xxx
+     * @param query
+     * @return
+     */
     public QueryResponseResult<T> selectByQuery(Query query) {
         // 获得类型
         Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
@@ -96,7 +101,7 @@ public class BaseBiz<M extends Mapper<T>, T> {
                 if (key.contains("_")){
                     String[] s = key.split("_");
                     if(s.length != 2) {
-                        throw new RuntimeException("请求参数最多自能包含一个字符：[_]");
+//                        throw new RuntimeException("请求参数最多自能包含一个字符：[_]");
                     }
                     // 等于
                     if (s[1].equals("eq")){
@@ -109,9 +114,10 @@ public class BaseBiz<M extends Mapper<T>, T> {
                         continue;
                     }
 
-                    throw new RuntimeException("现在暂时不支持[" + s[1] +"]");
+//                    throw new RuntimeException("现在暂时不支持[" + s[1] +"]");
                 }
 
+                // 参数通过传递类似sort=id 可以设置查询的排序
                 if ("sort".equals(key)) {
                     try {
                         Column annotation = clazz.getDeclaredField(value.toString()).getAnnotation(Column.class);

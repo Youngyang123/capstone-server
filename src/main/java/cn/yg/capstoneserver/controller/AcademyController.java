@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("academy")
-@CrossOrigin
 public class AcademyController extends BaseController<AcademyBiz, Academy> {
 
     @PostMapping

@@ -4,6 +4,7 @@ import cn.yg.capstoneserver.entity.Artical;
 import cn.yg.capstoneserver.entity.Setting;
 import cn.yg.capstoneserver.entity.User;
 import cn.yg.capstoneserver.entity.vo.ArticalVo;
+import cn.yg.capstoneserver.exception.BaseUncheckedException;
 import cn.yg.capstoneserver.mapper.ArticalMapper;
 import cn.yg.capstoneserver.mapper.UserCollectionMapper;
 import cn.yg.capstoneserver.mapper.UserFocusMapper;
@@ -18,12 +19,14 @@ import org.jsoup.Jsoup;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class ArticalBiz extends BaseBiz<ArticalMapper, Artical> {
 
     @Autowired
@@ -37,6 +40,11 @@ public class ArticalBiz extends BaseBiz<ArticalMapper, Artical> {
     @Autowired
     private UserFocusMapper userFocusMapper;
 
+    /**
+     * 添加文章
+     * @param entity
+     * @return
+     */
     public ObjectResponseResult<Artical> add(Artical entity) {
         User user = userBiz.selectById(entity.getUid());
         if (user == null) {
@@ -50,12 +58,17 @@ public class ArticalBiz extends BaseBiz<ArticalMapper, Artical> {
         return ObjectResponseResult.getInstance().message("发表成功");
     }
 
+    /**
+     * 查询文章详细内容
+     * @param query
+     * @return
+     */
     public QueryResponseResult detailList(Query query) {
         QueryResponseResult<Artical> queryResponseResult = selectByQuery(query);
         String uid = (String) query.get("uid");
         uid = uid!=null ? uid : (String) query.get("uid_eq");
         if (uid == null) {
-            throw new RuntimeException("必须传入uid或者uid_eq");
+            throw new BaseUncheckedException(5000, "系统错误");
         }
         List<Integer> aidsOfCollection = userCollectionMapper.selectAids(uid);
         List<Integer> aidsOfUserLike = userLikeRefMapper.selectAids(uid);
@@ -101,6 +114,11 @@ public class ArticalBiz extends BaseBiz<ArticalMapper, Artical> {
         return null;
     }
 
+    /**
+     * 获取老师的文章
+     * @param query
+     * @return
+     */
     public QueryResponseResult getTeacherArtical(Query query) {
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
         List<Artical> articals = mapper.selectByIdentity(2);
@@ -109,6 +127,7 @@ public class ArticalBiz extends BaseBiz<ArticalMapper, Artical> {
                 .data(pageInfo.getList())
                 .total(pageInfo.getTotal());
     }
+
 
     public QueryResponseResult getMajorArtical(Query query) {
         Integer mid = Integer.parseInt(String.valueOf(query.get("mid")));

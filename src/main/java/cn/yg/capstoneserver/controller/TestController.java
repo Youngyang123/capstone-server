@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("test")
-@CrossOrigin
 public class TestController implements TestControllerApi {
     @Override
     @PostMapping

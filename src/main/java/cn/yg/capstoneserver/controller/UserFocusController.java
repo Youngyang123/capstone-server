@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("focus")
-@CrossOrigin
 public class UserFocusController extends BaseController<UserFocusBiz, UserFocus> {
 
     @PostMapping("toggle")

@@ -28,7 +28,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("user")
-@CrossOrigin
 public class UserController extends BaseController<UserBiz, User> implements UserControllerApi {
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired

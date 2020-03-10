@@ -9,6 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("setting")
-@CrossOrigin
 public class SettingController extends BaseController<SettingBiz, Setting> {
 }

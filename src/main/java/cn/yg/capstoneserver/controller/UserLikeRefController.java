@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("like")
-@CrossOrigin
 public class UserLikeRefController extends BaseController<UserLikeRefBiz, UserLikeRef> {
 
     @PostMapping("toggle")

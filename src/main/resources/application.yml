@@ -21,3 +21,10 @@ mybatis:
 logging:
   level:
     cn.yg.capstoneserver: debug
+
+authentication:
+  tokenInfo:
+    expire: 43200               # 外部token有效期为12小时
+    header-name: X-Token
+    pri-key-path: key/pri.key    # 加密
+    pub-key-path: key/pub.key    # 解密

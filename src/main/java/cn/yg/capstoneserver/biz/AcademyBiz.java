@@ -8,16 +8,23 @@ import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
 import cn.yg.capstoneserver.utils.response.QueryResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class AcademyBiz extends BaseBiz<AcademyMapper, Academy> {
 
     @Autowired
     private SchoolBiz schoolBiz;
 
+    /**
+     * 添加学院
+     * @param academy
+     * @return
+     */
     public ObjectResponseResult add(Academy academy) {
         Academy academyCheck = new Academy();
         academyCheck.setSchoolId(academy.getSchoolId());
@@ -33,6 +40,11 @@ public class AcademyBiz extends BaseBiz<AcademyMapper, Academy> {
         return new ObjectResponseResult();
     }
 
+    /**
+     * 查询学校下的所有学院
+     * @param schoolId
+     * @return
+     */
     public QueryResponseResult<Academy> getBySchoolId(int schoolId) {
         Example example = new Example(Academy.class);
         Example.Criteria criteria = example.createCriteria();

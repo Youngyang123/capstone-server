@@ -7,15 +7,22 @@ import cn.yg.capstoneserver.utils.biz.BaseBiz;
 import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class UserFocusBiz extends BaseBiz<UserFocusMapper, UserFocus> {
 
     @Autowired
     private UserBiz userBiz;
 
+    /**
+     * 关注或者取消关注
+     * @param userFocus
+     * @return
+     */
     public ObjectResponseResult toggle(UserFocus userFocus) {
         User user = userBiz.selectById(userFocus.getUid());
         User fuser = userBiz.selectById(userFocus.getFid());

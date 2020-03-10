@@ -1,6 +1,8 @@
 package cn.yg.capstoneserver.utils.response;
 
 
+import cn.yg.capstoneserver.utils.jwt.utils.Token;
+
 public class SysLoginResponseResult extends ResponseResult {
     private String token;
 

@@ -5,12 +5,14 @@ import cn.yg.capstoneserver.mapper.SchoolMapper;
 import cn.yg.capstoneserver.utils.biz.BaseBiz;
 import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class SchoolBiz extends BaseBiz<SchoolMapper, School> {
 
     public ObjectResponseResult<School> add(School school) {

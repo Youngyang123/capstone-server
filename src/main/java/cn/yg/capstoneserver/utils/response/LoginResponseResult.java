@@ -1,27 +1,24 @@
 package cn.yg.capstoneserver.utils.response;
 
+import cn.yg.capstoneserver.utils.jwt.utils.Token;
+import lombok.Data;
+
+@Data
 public class LoginResponseResult extends ResponseResult {
-    private String uid;
+    private Token token;
 
-    public LoginResponseResult(int code, String message, String uid) {
+    public LoginResponseResult(int code, String message, Token token) {
         super(code, message, true);
-        this.uid = uid;
+        this.token = token;
     }
-    public LoginResponseResult(int code, String message, String uid, boolean success) {
+    public LoginResponseResult(int code, String message, Token token, boolean success) {
         super(code, message, success);
-        this.uid = uid;
+        this.token = token;
     }
 
-    public LoginResponseResult(String message, String uid) {
+    public LoginResponseResult(String message, Token token) {
         super(message);
-        this.uid = uid;
+        this.token = token;
     }
 
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
 }

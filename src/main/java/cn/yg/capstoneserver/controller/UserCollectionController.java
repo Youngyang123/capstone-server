@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("collection")
-@CrossOrigin
 public class UserCollectionController extends BaseController<UserCollectionBiz, UserCollection> {
     @PostMapping("toggle")
     public ObjectResponseResult toggle(@RequestBody UserCollection userCollection) {

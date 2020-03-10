@@ -1,17 +1,20 @@
 package cn.yg.capstoneserver.biz;
 
 import cn.yg.capstoneserver.entity.*;
+import cn.yg.capstoneserver.exception.BaseUncheckedException;
+import cn.yg.capstoneserver.exception.code.ExceptionCode;
 import cn.yg.capstoneserver.mapper.UserMapper;
 import cn.yg.capstoneserver.utils.Query;
 import cn.yg.capstoneserver.utils.biz.BaseBiz;
+import cn.yg.capstoneserver.utils.jwt.server.utils.JwtTokenServerUtils;
+import cn.yg.capstoneserver.utils.jwt.utils.JwtInfo;
+import cn.yg.capstoneserver.utils.jwt.utils.Token;
 import cn.yg.capstoneserver.utils.response.LoginResponseResult;
 import cn.yg.capstoneserver.utils.response.ObjectResponseResult;
 import cn.yg.capstoneserver.utils.response.QueryResponseResult;
 import cn.yg.capstoneserver.utils.response.ResponseResult;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -20,6 +23,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class UserBiz extends BaseBiz<UserMapper, User> {
 
     @Autowired
@@ -39,6 +44,8 @@ public class UserBiz extends BaseBiz<UserMapper, User> {
     private ClazzBiz clazzBiz;
     @Autowired
     private ImportUserBiz importUserBiz;
+    @Autowired
+    private JwtTokenServerUtils jwtTokenServerUtils;
     
     public QueryResponseResult findAll() {
         List<User> users = mapper.selectAll();
@@ -54,7 +61,7 @@ public class UserBiz extends BaseBiz<UserMapper, User> {
     public ObjectResponseResult<User> info(String id) {
         User user = mapper.selectByPrimaryKey(id);
         if (user == null) {
-            return new ObjectResponseResult<>(40000, "用户不存在", null);
+            throw new BaseUncheckedException(ExceptionCode.JWT_USER_ENABLED);
         }
         return new ObjectResponseResult<>(20000, "获取成功", user);
     }
@@ -65,9 +72,11 @@ public class UserBiz extends BaseBiz<UserMapper, User> {
         user.setPasswd(passwd);
         List<User> users = mapper.select(user);
         if (users==null || users.size() < 1) {
-            return new LoginResponseResult(40000, "用户名或密码错误", null);
+            throw new BaseUncheckedException(ExceptionCode.JWT_USER_INVALID);
         }
-        return new LoginResponseResult(20000, "登录成功", users.get(0).getId());
+        JwtInfo jwtInfo = new JwtInfo(user.getId(), user.getName());
+        Token token = jwtTokenServerUtils.generateUserToken(jwtInfo, null);
+        return new LoginResponseResult(20000, "登录成功", token);
     }
 
     public ObjectResponseResult add(User user) {
@@ -88,7 +97,7 @@ public class UserBiz extends BaseBiz<UserMapper, User> {
         Query query = new Query(params);
         String uid = (String) params.get("uid");
         if (uid == null) {
-            throw new RuntimeException("没有uid");
+            throw new BaseUncheckedException(5000, "系统错误");
         }
 //        System.out.println(query.getPageNum() +" size: " + query.getPageSize());
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
@@ -103,7 +112,7 @@ public class UserBiz extends BaseBiz<UserMapper, User> {
         Query query = new Query(params);
         String fid = (String) params.get("fid");
         if (fid == null) {
-            throw new RuntimeException("没有fid");
+            throw new BaseUncheckedException(5000, "系统错误");
         }
         PageHelper.startPage(query.getPageNum(), query.getPageSize());
         List<User> focusMe = mapper.getFocusMe(fid);
