@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <mysql-connector-java.version>5.1.45</mysql-connector-java.version>
+        <mysql-connector-java.version>8.0.28</mysql-connector-java.version>
         <mapper-spring-boot-starter.version>2.1.5</mapper-spring-boot-starter.version>
         <!-- mapper接口和实体类 -->
         <targetMapperPackage>cn.yg.capstoneserver.mapper</targetMapperPackage>
@@ -133,7 +133,7 @@
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
-                        <version>5.1.30</version>
+                        <version>8.0.28</version>
                         <scope>runtime</scope>
                     </dependency>
                     <dependency>
